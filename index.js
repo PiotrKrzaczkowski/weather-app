@@ -29,7 +29,6 @@ window.addEventListener("load", () => {
           return data.json();
         })
         .then((json) => {
-          console.log(json.data[0]);
           const {
             temp,
             timezone,
@@ -39,11 +38,10 @@ window.addEventListener("load", () => {
             sunset,
             sunrise,
           } = json.data[0];
-          console.log(weather.icon);
+          console.log(json.data[0]);
 
-          const degreeExtension = document.querySelector(".extension");
-
-          degreeExtension.innerHTML = `<p>&deg;</p><sup>C</sup>`;
+          const weatherIcon = weather.description;
+          // console.log(weatherIcon);
 
           // API TO DOM
           cityName.textContent = city_name;
@@ -53,7 +51,16 @@ window.addEventListener("load", () => {
           sunsett.innerHTML = `<i class="far fa-moon"></i> ${sunset}`;
           sunrisee.innerHTML = `<i class="far fa-sun"></i> ${sunrise}`;
           region.textContent = timezone;
+
+          setIcons(weatherIcon, document.querySelector(".icon"));
         });
     });
+  }
+  function setIcons(icon, iconID) {
+    const skycons = new Skycons();
+    const currentIcon = icon.replace(/ /g, "_").toUpperCase();
+    skycons.play();
+    console.log(currentIcon);
+    return skycons.set(iconID, Skycons[currentIcon]);
   }
 });

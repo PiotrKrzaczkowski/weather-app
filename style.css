@@ -50,3 +50,6 @@ body {
 .sunset {
   margin-left: 25px;
 }
+canvas {
+  z-index: 999;
+}
