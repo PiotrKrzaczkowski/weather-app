@@ -4,11 +4,11 @@ window.addEventListener("load", () => {
   const cityName = document.querySelector(".city-name");
   const icon = document.querySelector(".icon");
   const dayDegree = document.querySelector(".day");
-  const nightDegree = document.querySelector(".night");
   const sunrisee = document.querySelector(".sunrise");
   const sunsett = document.querySelector(".sunset");
   const date = document.querySelector(".full-date");
   const region = document.querySelector(".region");
+  const desc = document.querySelector(".desc");
 
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition((position) => {
@@ -40,27 +40,17 @@ window.addEventListener("load", () => {
           } = json.data[0];
           console.log(json.data[0]);
 
-          const weatherIcon = weather.description;
           // console.log(weatherIcon);
 
           // API TO DOM
+          desc.textContent = weather.description;
           cityName.textContent = city_name;
-          icon.style.background = `url(${weather.icon})`;
           dayDegree.innerHTML = `<p>${temp.toFixed()}&nbsp;&deg;</p>`;
           date.textContent = ob_time.substring(0, 10);
           sunsett.innerHTML = `<i class="far fa-moon"></i> ${sunset}`;
           sunrisee.innerHTML = `<i class="far fa-sun"></i> ${sunrise}`;
           region.textContent = timezone;
-
-          setIcons(weatherIcon, document.querySelector(".icon"));
         });
     });
-  }
-  function setIcons(icon, iconID) {
-    const skycons = new Skycons();
-    const currentIcon = icon.replace(/ /g, "_").toUpperCase();
-    skycons.play();
-    console.log(currentIcon);
-    return skycons.set(iconID, Skycons[currentIcon]);
   }
 });
