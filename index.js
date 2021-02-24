@@ -43,7 +43,7 @@ window.addEventListener("load", () => {
           // console.log(weatherIcon);
 
           // API TO DOM
-          desc.textContent = weather.description;
+          desc.textContent = `'${weather.description}'`;
           cityName.textContent = city_name;
           dayDegree.innerHTML = `<p>${temp.toFixed()}&nbsp;&deg;</p>`;
           date.textContent = ob_time.substring(0, 10);

@@ -56,6 +56,8 @@ body {
 }
 .desc {
   margin-bottom: -60px;
+  font-weight: 100;
+  font-style: italic;
 }
 .day {
   display: flex;
